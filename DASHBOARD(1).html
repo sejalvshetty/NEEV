@@ -1,0 +1,1372 @@
+<html>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NEEV Impact Dashboard</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+        header {
+            background: linear-gradient(
+                135deg,
+                #29265f,
+                #8d81a3
+            );
+
+            color: rgb(249, 250, 251);
+
+            padding: 25px 40px;
+        }
+         header h1 {
+            font-size: 50px;
+            text-align: center;
+        }
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 22px;
+            margin: 30px 0 15px;
+            color: #111827;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 22px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,0.07);
+
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        .number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111827;
+        }
+        .subtext {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 7px;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .panel {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,0.07);
+        }
+        .panel h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .progress-container {
+            margin: 18px 0;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+        }
+        .progress {
+            width: 100%;
+            height: 10px;
+
+            background: #e5e7eb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #8b5cf6
+                );
+
+            width: 0%;
+
+            transition:
+                width 1s ease;
+        }
+        .category {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 15px 0;
+
+            border-bottom:
+                1px solid #eee;
+        }
+        .category:last-child {
+            border-bottom: none;
+        }
+        .category-name {
+            font-weight: bold;
+        }
+        .category-info {
+            text-align: right;
+
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+        .recognition {
+            display: flex;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+        .recognition-box {
+            flex: 1;
+
+            min-width: 180px;
+
+            background: #f9fafb;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            text-align: center;
+        }
+        .recognition-box h3 {
+            margin-top: 10px;
+        }
+        .recognition-box p {
+            font-size: 25px;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+        }
+        .rank-box {
+            text-align: center;
+
+            padding: 20px;
+        }
+        .rank-name {
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin: 10px 0;
+        }
+        .milestone {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #eef2ff;
+
+            border-radius: 10px;
+
+            color: #4338ca;
+        }
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 40px;
+
+            background: #111827;
+
+            color: white;
+        }
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>NEEV IMPACT DASHBOARD</h1>
+    </header>
+    <div class="container">
+
+        <h2 class="section-title">
+            Overall Impact
+        </h2>
+
+        <div class="cards">
+            <div class="card">
+
+                <h3>Total Seva Hours</h3>
+
+                <div
+                    class="number"
+                    id="sevaHours">
+                    0
+                </div>
+
+                <div
+                    class="subtext"
+                    id="sevaSubtext">
+                    0 Event | 0 Task
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Registered Volunteers</h3>
+                
+                <div
+                    class="number"
+                    id="volunteers">
+                    0
+                </div>
+
+                <div class="subtext">
+                    Volunteers registered
+                </div>
+
+            </div>
+            <div class="card">
+
+                <h3>
+                    Active Volunteers
+                </h3>
+
+                <div
+                    class="number"
+                    id="activeVolunteers">
+                    0
+                </div>
+
+                <div
+                    class="subtext"
+                    id="engagementRate">
+                    0% Engagement Rate
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Activities Completed
+                </h3>
+
+                <div
+                    class="number"
+                    id="activitiesCompleted">
+                    0
+                </div>
+
+                <div class="subtext">
+                    Events + Tasks
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <h2 class="section-title">
+            Events & Tasks
+        </h2>
+
+
+        <div class="two-column">
+
+            <div class="panel">
+
+                <h2>
+                    Events Progress
+                </h2>
+
+
+                <div class="progress-container">
+
+
+                    <div class="progress-label">
+
+                        <span>
+                            Events Conducted
+                        </span>
+
+                        <strong
+                            id="eventsConducted">
+                            0 / 0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="eventProgress">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Active Published Events
+                    </span>
+
+                    <strong
+                        id="activePublishedEvents">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Total Registrations
+                    </span>
+
+                    <strong
+                        id="totalRegistrations">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Attendances
+                    </span>
+
+                    <strong
+                        id="attendances">
+                        0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TASKS -->
+
+            <div class="panel">
+
+                <h2>
+                    Task Completion
+                </h2>
+
+
+                <div class="progress-container">
+
+
+                    <div class="progress-label">
+
+                        <span>
+                            Completion Rate
+                        </span>
+
+                        <strong
+                            id="taskCompletionRate">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="taskProgress">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Assigned Tasks
+                    </span>
+
+                    <strong
+                        id="assignedTasks">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Completed Tasks
+                    </span>
+
+                    <strong
+                        id="completedTasks">
+                        0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <h2 class="section-title">
+            Impact by Category
+        </h2>
+
+
+        <div class="two-column">
+
+
+            <div class="panel">
+
+                <h2>
+                    Other
+                </h2>
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Seva Hours
+                    </span>
+
+                    <strong
+                        id="otherHours">
+                        0 Hours
+                    </strong>
+
+                </div>
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Participants
+                    </span>
+
+                    <strong
+                        id="otherParticipants">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Events
+                    </span>
+
+                    <strong
+                        id="otherEvents">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>
+                    Teaching & Mentorship
+                </h2>
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Seva Hours
+                    </span>
+
+                    <strong
+                        id="teachingHours">
+                        0 Hours
+                    </strong>
+
+                </div>
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Participants
+                    </span>
+
+                    <strong
+                        id="teachingParticipants">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="category">
+
+                    <span class="category-name">
+                        Events
+                    </span>
+
+                    <strong
+                        id="teachingEvents">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <h2 class="section-title">Certificates & Recognition</h2>
+
+        <div class="panel">
+
+
+            <div class="recognition">
+
+
+                <div class="recognition-box">
+
+                    <h3>Total Certificates </h3>
+
+                   <p id="certificates"> 0</p>
+
+                    <small>
+                        Certificates Earned
+                    </small>
+
+                </div>
+
+                <div class="recognition-box">
+
+                    <h3>
+                        Total Badges
+                    </h3>
+
+                    <p id="badges">
+                        0
+                    </p>
+
+                    <small>
+                        Badges Earned
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <h2 class="section-title">
+            Volunteer Rank Distribution
+        </h2>
+
+
+        <div class="panel">
+
+
+            <div class="rank-box">
+
+
+                <div class="rank-name">
+                    NEEV Initiate
+                </div>
+
+
+                <p>
+
+                    <strong
+                        id="rankVolunteerCount">
+                        0
+                    </strong>
+
+                    Volunteers
+
+                </p>
+
+
+                <div class="milestone">
+
+                    Next Milestone:
+
+                    <strong>
+                        Spark of Change
+                    </strong>
+
+                    <br>
+
+                    Reach
+                    <strong>
+                        15 Seva Hours
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <footer>
+
+        NEEV Impact Dashboard
+
+    </footer>
+
+    <script>
+
+        const activities = [
+
+            {
+                id: 1,
+
+                type: "event",
+
+                title: "Teaching Activity",
+
+                category:
+                    "Teaching & Mentorship",
+
+                status: "completed",
+
+                sevaHours: 5,
+
+                registrations: 10,
+
+                attendance: 8,
+
+                published: true,
+
+                certificates: 8,
+
+                badges: 2
+            },
+
+
+            {
+                id: 2,
+
+                type: "event",
+
+                title: "Community Service",
+
+                category: "Other",
+
+                status: "completed",
+
+                sevaHours: 10,
+
+                registrations: 20,
+
+                attendance: 15,
+
+                published: true,
+
+                certificates: 15,
+
+                badges: 5
+            },
+
+
+            {
+                id: 3,
+
+                type: "event",
+
+                title: "Awareness Drive",
+
+                category: "Other",
+
+                status: "completed",
+
+                sevaHours: 8,
+
+                registrations: 15,
+
+                attendance: 10,
+
+                published: false,
+
+                certificates: 10,
+
+                badges: 4
+            },
+
+
+            {
+                id: 4,
+
+                type: "task",
+
+                title: "Documentation Task",
+
+                category: "Other",
+
+                status: "completed",
+
+                sevaHours: 1,
+
+                registrations: 0,
+
+                attendance: 0,
+
+                published: false,
+
+                certificates: 1,
+
+                badges: 0
+            }
+
+        ];
+
+
+        const volunteers = [
+
+            {
+                id: 1,
+                name: "Volunteer 1",
+                registered: true,
+                activitiesParticipated: 2
+            },
+
+
+            {
+                id: 2,
+                name: "Volunteer 2",
+                registered: true,
+                activitiesParticipated: 1
+            },
+
+
+            {
+                id: 3,
+                name: "Volunteer 3",
+                registered: true,
+                activitiesParticipated: 0
+            }
+
+        ];
+
+        const events =
+            activities.filter(
+                activity =>
+                    activity.type === "event"
+            );
+
+
+        const tasks =
+            activities.filter(
+                activity =>
+                    activity.type === "task"
+            );
+
+
+        const completedActivities =
+            activities.filter(
+                activity =>
+                    activity.status === "completed"
+            );
+
+
+        const completedEvents =
+            events.filter(
+                activity =>
+                    activity.status === "completed"
+            );
+
+
+        const completedTasks =
+            tasks.filter(
+                activity =>
+                    activity.status === "completed"
+            );
+
+        const totalSevaHours =
+            activities.reduce(
+                (total, activity) =>
+                    total +
+                    Number(activity.sevaHours || 0),
+                0
+            );
+
+
+        const eventSevaHours =
+            events.reduce(
+                (total, activity) =>
+                    total +
+                    Number(activity.sevaHours || 0),
+                0
+            );
+
+
+        const taskSevaHours =
+            tasks.reduce(
+                (total, activity) =>
+                    total +
+                    Number(activity.sevaHours || 0),
+                0
+            );
+
+        const totalRegistrations =
+            events.reduce(
+                (total, activity) =>
+                    total +
+                    Number(
+                        activity.registrations || 0
+                    ),
+                0
+            );
+
+
+        const totalAttendances =
+            events.reduce(
+                (total, activity) =>
+                    total +
+                    Number(
+                        activity.attendance || 0
+                    ),
+                0
+            );
+
+
+        const activePublishedEvents =
+            events.filter(
+                activity =>
+                    activity.published === true
+            ).length;
+
+
+
+        const registeredVolunteers =
+            volunteers.filter(
+                volunteer =>
+                    volunteer.registered === true
+            ).length;
+
+
+        const activeVolunteers =
+            volunteers.filter(
+                volunteer =>
+                    volunteer.activitiesParticipated > 0
+            ).length;
+
+
+        const engagementRate =
+            registeredVolunteers > 0
+                ?
+                (
+                    activeVolunteers /
+                    registeredVolunteers
+                ) * 100
+                :
+                0;
+
+
+        const totalEvents =
+            events.length;
+
+
+        const eventsConducted =
+            completedEvents.length;
+
+
+        const eventCompletionRate =
+            totalEvents > 0
+                ?
+                (
+                    eventsConducted /
+                    totalEvents
+                ) * 100
+                :
+                0;
+
+
+        const assignedTasks =
+            tasks.length;
+
+
+        const completedTasksCount =
+            completedTasks.length;
+
+
+        const taskCompletionRate =
+            assignedTasks > 0
+                ?
+                (
+                    completedTasksCount /
+                    assignedTasks
+                ) * 100
+                :
+                0;
+
+
+        const totalCertificates =
+            activities.reduce(
+                (total, activity) =>
+                    total +
+                    Number(
+                        activity.certificates || 0
+                    ),
+                0
+            );
+
+
+        const totalBadges =
+            activities.reduce(
+                (total, activity) =>
+                    total +
+                    Number(
+                        activity.badges || 0
+                    ),
+                0
+            );
+
+
+        function getCategoryData(category) {
+
+
+            const categoryActivities =
+                activities.filter(
+                    activity =>
+                        activity.category === category
+                );
+
+
+            const sevaHours =
+                categoryActivities.reduce(
+                    (total, activity) =>
+                        total +
+                        Number(
+                            activity.sevaHours || 0
+                        ),
+                    0
+                );
+
+
+            const eventsCount =
+                categoryActivities.filter(
+                    activity =>
+                        activity.type === "event"
+                ).length;
+
+
+            const participants =
+                categoryActivities.reduce(
+                    (total, activity) =>
+                        total +
+                        Number(
+                            activity.attendance || 0
+                        ),
+                    0
+                );
+
+
+            return {
+
+                sevaHours,
+
+                events:
+                    eventsCount,
+
+                participants
+
+            };
+
+        }
+
+
+        function formatNumber(number) {
+
+            return Number.isInteger(number)
+                ? number
+                : number.toFixed(1);
+
+        }
+
+
+        function updateDashboard() {
+
+
+            document.getElementById(
+                "sevaHours"
+            ).textContent =
+                formatNumber(
+                    totalSevaHours
+                );
+
+
+            document.getElementById(
+                "sevaSubtext"
+            ).textContent =
+
+                `${formatNumber(eventSevaHours)} Event | ` +
+                `${formatNumber(taskSevaHours)} Task`;
+
+
+
+            document.getElementById(
+                "volunteers"
+            ).textContent =
+                registeredVolunteers;
+
+
+            document.getElementById(
+                "activeVolunteers"
+            ).textContent =
+                activeVolunteers;
+
+            document.getElementById(
+                "engagementRate"
+            ).textContent =
+
+                `${engagementRate.toFixed(0)}% Engagement Rate`;
+
+            document.getElementById(
+                "activitiesCompleted"
+            ).textContent =
+                completedActivities.length;
+
+            document.getElementById(
+                "eventsConducted"
+            ).textContent =
+
+                `${eventsConducted} / ${totalEvents}`;
+
+            document.getElementById(
+                "eventProgress"
+            ).style.width =
+
+                `${eventCompletionRate}%`;
+
+            document.getElementById(
+                "activePublishedEvents"
+            ).textContent =
+                activePublishedEvents;
+
+            document.getElementById(
+                "totalRegistrations"
+            ).textContent =
+                totalRegistrations;
+
+            document.getElementById(
+                "attendances"
+            ).textContent =
+                totalAttendances;
+            document.getElementById(
+                "assignedTasks"
+            ).textContent =
+                assignedTasks;
+            document.getElementById(
+                "completedTasks"
+            ).textContent =
+                completedTasksCount;
+
+            document.getElementById(
+                "taskCompletionRate"
+            ).textContent =
+
+                `${taskCompletionRate.toFixed(0)}%`;
+
+            document.getElementById(
+                "taskProgress"
+            ).style.width =
+
+                `${taskCompletionRate}%`;
+
+
+            document.getElementById(
+                "certificates"
+            ).textContent =
+                totalCertificates;
+
+
+            document.getElementById(
+                "badges"
+            ).textContent =
+                totalBadges;
+
+
+            document.getElementById(
+                "rankVolunteerCount"
+            ).textContent =
+                registeredVolunteers;
+
+        }
+
+
+        function updateCategory(
+            category,
+            hoursId,
+            participantsId,
+            eventsId
+        ) {
+
+
+            const data =
+                getCategoryData(category);
+
+
+
+            document.getElementById(
+                hoursId
+            ).textContent =
+
+                `${formatNumber(
+                    data.sevaHours
+                )} Hours`;
+
+
+
+            document.getElementById(
+                participantsId
+            ).textContent =
+
+                data.participants;
+
+
+
+            document.getElementById(
+                eventsId
+            ).textContent =
+
+                data.events;
+
+        }
+
+
+
+        /* =====================================================
+           NUMBER ANIMATION
+        ===================================================== */
+
+
+        function animateNumber(
+            element,
+            target
+        ) {
+
+
+            let current = 0;
+
+            const duration = 800;
+
+            const startTime =
+                performance.now();
+
+
+            function update(currentTime) {
+
+
+                const elapsed =
+                    currentTime -
+                    startTime;
+
+
+                const progress =
+                    Math.min(
+                        elapsed / duration,
+                        1
+                    );
+
+
+                current =
+                    target * progress;
+
+
+
+                element.textContent =
+                    formatNumber(current);
+
+
+
+                if (progress < 1) {
+
+                    requestAnimationFrame(
+                        update
+                    );
+
+                }
+
+            }
+
+
+            requestAnimationFrame(
+                update
+            );
+
+        }
+
+        updateDashboard();
+
+
+
+        updateCategory(
+            "Other",
+            "otherHours",
+            "otherParticipants",
+            "otherEvents"
+        );
+
+
+        updateCategory(
+            "Teaching & Mentorship",
+            "teachingHours",
+            "teachingParticipants",
+            "teachingEvents"
+        );
+
+
+
+        console.log(
+            "NEEV Dashboard:",
+            {
+
+                totalSevaHours,
+
+                eventSevaHours,
+
+                taskSevaHours,
+
+                registeredVolunteers,
+
+                activeVolunteers,
+
+                engagementRate,
+
+                activitiesCompleted:
+                    completedActivities.length,
+
+                eventsConducted,
+
+                totalEvents,
+
+                activePublishedEvents,
+
+                totalRegistrations,
+
+                totalAttendances,
+
+                assignedTasks,
+
+                completedTasksCount,
+
+                taskCompletionRate,
+
+                totalCertificates,
+
+                totalBadges
+
+            }
+        );
+
+
+    </script>
+</body>
+</html>
