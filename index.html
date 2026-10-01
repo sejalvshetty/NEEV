@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEEV Impact Dashboard</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+ 
+    <header class="header">
+
+        <div class="header-content">
+
+            <div>
+                <p class="eyebrow">NEEV • IMPACT ANALYTICS</p>
+
+                <h1>Impact Dashboard</h1>
+
+                <p class="header-subtitle">
+                    Volunteer and Seva Activity Statistics
+                </p>
+            </div>
+
+            <div class="header-status">
+                <span class="status-dot"></span>
+                <span>Live Statistics</span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= OVERVIEW ================= -->
+
+        <section>
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">01</p>
+                    <h2>Overall Impact</h2>
+                </div>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <!-- Seva Hours -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">◷</div>
+
+                    <div class="stat-content">
+
+                        <p class="stat-label">
+                            Total Seva Hours
+                        </p>
+
+                        <h3 id="totalSevaHours">
+                            0
+                        </h3>
+
+                        <p class="stat-description">
+                            Hours of service recorded
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Volunteers -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">♙</div>
+
+                    <div class="stat-content">
+
+                        <p class="stat-label">
+                            Registered Volunteers
+                        </p>
+
+                        <h3 id="registeredVolunteers">
+                            0
+                        </h3>
+
+                        <p class="stat-description">
+                            Volunteers registered
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Active Volunteers -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">✦</div>
+
+                    <div class="stat-content">
+
+                        <p class="stat-label">
+                            Active Volunteers
+                        </p>
+
+                        <h3 id="activeVolunteers">
+                            0
+                        </h3>
+
+                        <p class="stat-description" id="engagementRate">
+                            0% engagement
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Activities -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">✓</div>
+
+                    <div class="stat-content">
+
+                        <p class="stat-label">
+                            Activities Completed
+                        </p>
+
+                        <h3 id="activitiesCompleted">
+                            0
+                        </h3>
+
+                        <p class="stat-description">
+                            Events and tasks
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!--  IMPACT ANALYTICS  -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">02</p>
+                    <h2>Impact Analytics</h2>
+                </div>
+
+            </div>
+
+
+            <div class="chart-grid">
+
+
+                <!-- Category Chart -->
+
+                <div class="panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="panel-label">
+                                DISTRIBUTION
+                            </p>
+
+                            <h3>
+                                Seva Hours by Category
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+
+                </div>
+
+
+
+                <!-- Participation Chart -->
+
+                <div class="panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="panel-label">
+                                PARTICIPATION
+                            </p>
+
+                            <h3>
+                                Volunteer Participation
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-container">
+                        <canvas id="participationChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= EVENTS + TASKS ================= -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">03</p>
+                    <h2>Events & Tasks</h2>
+                </div>
+
+            </div>
+
+
+            <div class="two-column">
+
+
+                <!-- EVENTS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="panel-label">
+                                EVENTS
+                            </p>
+
+                            <h3>
+                                Event Progress
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="big-progress">
+
+                        <div class="progress-top">
+
+                            <span>
+                                Events Conducted
+                            </span>
+
+                            <strong id="eventsConducted">
+                                0 / 0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                id="eventProgress">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-list">
+
+
+                        <div class="data-row">
+
+                            <span>
+                                Scheduled Events
+                            </span>
+
+                            <strong id="eventsScheduled">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-row">
+
+                            <span>
+                                Published Events
+                            </span>
+
+                            <strong id="publishedEvents">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-row">
+
+                            <span>
+                                Total Registrations
+                            </span>
+
+                            <strong id="totalRegistrations">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-row">
+
+                            <span>
+                                Total Attendance
+                            </span>
+
+                            <strong id="totalAttendance">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TASKS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="panel-label">
+                                TASKS
+                            </p>
+
+                            <h3>
+                                Task Completion
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="big-progress">
+
+                        <div class="progress-top">
+
+                            <span>
+                                Completion Rate
+                            </span>
+
+                            <strong id="taskCompletionRate">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                id="taskProgress">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-list">
+
+
+                        <div class="data-row">
+
+                            <span>
+                                Assigned Tasks
+                            </span>
+
+                            <strong id="assignedTasks">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-row">
+
+                            <span>
+                                Completed Tasks
+                            </span>
+
+                            <strong id="completedTasks">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CATEGORY BREAKDOWN  -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">04</p>
+                    <h2>Impact by Category</h2>
+                </div>
+
+            </div>
+
+
+            <div
+                class="category-grid"
+                id="categoryCards">
+            </div>
+
+        </section>
+
+
+
+        <!-- RECOGNITION-->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">05</p>
+                    <h2>Certificates & Recognition</h2>
+                </div>
+
+            </div>
+
+
+            <div class="recognition-grid">
+
+
+                <div class="recognition-card">
+
+                    <p class="panel-label">
+                        CERTIFICATES
+                    </p>
+
+                    <h3 id="totalCertificates">
+                        0
+                    </h3>
+
+                    <p>
+                        Certificates awarded
+                    </p>
+
+                </div>
+
+
+                <div class="recognition-card">
+
+                    <p class="panel-label">
+                        EVENT CERTIFICATES
+                    </p>
+
+                    <h3 id="eventCertificates">
+                        0
+                    </h3>
+
+                    <p>
+                        Certificates from events
+                    </p>
+
+                </div>
+
+
+                <div class="recognition-card">
+
+                    <p class="panel-label">
+                        TASK CERTIFICATES
+                    </p>
+
+                    <h3 id="taskCertificates">
+                        0
+                    </h3>
+
+                    <p>
+                        Certificates from tasks
+                    </p>
+
+                </div>
+
+
+                <div class="recognition-card">
+
+                    <p class="panel-label">
+                        BADGES
+                    </p>
+
+                    <h3 id="totalBadges">
+                        0
+                    </h3>
+
+                    <p>
+                        Badges earned
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- VOLUNTEER RANKS  -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">06</p>
+                    <h2>Volunteer Rank Distribution</h2>
+                </div>
+
+            </div>
+
+
+            <div
+                class="rank-grid"
+                id="rankCards">
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            NEEV IMPACT DASHBOARD
+        </p>
+
+        <span>
+            Volunteer • Seva • Impact
+        </span>
+
+    </footer>
+
+
+    <script src="sampledata.js"></script>
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>
